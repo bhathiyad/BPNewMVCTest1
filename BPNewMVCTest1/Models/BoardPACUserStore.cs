@@ -21,7 +21,7 @@ namespace BPNewMVCTest1.Models
                          IUserPasswordStore<IdentityUser>,
                          IUserSecurityStampStore<IdentityUser>
     {
-        private ITokenDTService _tokenDTService;
+        //private ITokenDTService _tokenDTService;
         private IHttpService _httpService;
         public BoardPACUserStore(IHttpService httpService)
         {
