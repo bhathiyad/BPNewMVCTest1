@@ -43,7 +43,7 @@ namespace BPNewMVCTest1.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page here.";
+            ViewData["Message"] = "Your contact page here 123456.";
 
             return View();
         }
