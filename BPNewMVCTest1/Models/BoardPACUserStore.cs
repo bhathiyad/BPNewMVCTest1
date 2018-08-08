@@ -58,9 +58,20 @@ namespace BPNewMVCTest1.Models
             //throw new NotImplementedException();
         }
 
-        public Task<IdentityUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
+        public async Task<IdentityUser> FindByIdAsync(string userId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+
+            HttpClient client = _httpService.GetHttpClientInstance();
+            HttpResponseMessage response = await client.PostAsJsonAsync(_httpService.GetBaseURL() + "auth/findbyid", userId);
+
+            IdentityUser identityUser = null;
+            if (response.IsSuccessStatusCode)
+            {
+                identityUser = await response.Content.ReadAsAsync<IdentityUser>();
+            }
+
+            return identityUser;
+            //throw new NotImplementedException();
         }
 
         public Task<IdentityUser> FindByLoginAsync(string loginProvider, string providerKey, CancellationToken cancellationToken)
