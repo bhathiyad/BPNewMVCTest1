@@ -16,6 +16,8 @@ using BPNewMVCTest.Models;
 using BPNewMVCTest1.Models;
 using BPNewMVCTest1Service.TokenDTService;
 using BPNewMVCTest1Service.HttpService;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.AzureAppServices;
 
 namespace BPNewMVCTest1
 {
@@ -56,7 +58,7 @@ namespace BPNewMVCTest1
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
@@ -80,6 +82,11 @@ namespace BPNewMVCTest1
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            loggerFactory.AddAzureWebAppDiagnostics(new AzureAppServicesDiagnosticsSettings
+            {
+                OutputTemplate = "{Timestamp:yyyy-MM-dd HH:mm:ss zzz} [{Level}] {RequestId}-{SourceContext}: {Message}{NewLine}{Exception}"
             });
         }
     }

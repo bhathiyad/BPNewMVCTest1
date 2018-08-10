@@ -9,6 +9,7 @@ using BPNewMVCTest1Service.TokenDTService;
 using Microsoft.Extensions.Configuration;
 using BPNewMVCTest1Service.HttpService;
 using System.Net.Http;
+using Microsoft.Extensions.Logging;
 
 namespace BPNewMVCTest1.Controllers
 {
@@ -17,12 +18,14 @@ namespace BPNewMVCTest1.Controllers
         private ITokenDTService _tokenDTService;
         public IConfiguration _configuration;
         private IHttpService _httpService;
-        public HomeController(ITokenDTService tokenDTService, IConfiguration configuration, IHttpService httpService)
+        private readonly ILogger _logger;
+        public HomeController(ITokenDTService tokenDTService, IConfiguration configuration, IHttpService httpService, ILogger logger)
                 :base(tokenDTService, configuration)
         {
             _tokenDTService = tokenDTService;
             _configuration = configuration;
             _httpService = httpService;
+            _logger = logger;
         }
 
         public IActionResult Index()
@@ -32,6 +35,8 @@ namespace BPNewMVCTest1.Controllers
 
         public async Task<IActionResult> About()
         {
+            _logger.LogInformation("*******************************************************");
+
             ViewData["Message"] = "Your application description page.";
 
             HttpClient client = _httpService.GetHttpClientInstance();
