@@ -18,8 +18,8 @@ namespace BPNewMVCTest1.Controllers
         private ITokenDTService _tokenDTService;
         public IConfiguration _configuration;
         private IHttpService _httpService;
-        private readonly ILogger _logger;
-        public HomeController(ITokenDTService tokenDTService, IConfiguration configuration, IHttpService httpService, ILogger logger)
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(ITokenDTService tokenDTService, IConfiguration configuration, IHttpService httpService, ILogger<HomeController> logger)
                 :base(tokenDTService, configuration)
         {
             _tokenDTService = tokenDTService;
