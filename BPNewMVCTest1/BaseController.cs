@@ -22,8 +22,11 @@ namespace BPNewMVCTest1
 
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            //string token = context.HttpContext.Request.Headers["Authorization"]; //Request.Headers["Authorization"];
-            //_tokenDTService.SetToken(token);
+            string token = context.HttpContext.Request.Headers["Authorization"]; //Request.Headers["Authorization"];
+            if (!string.IsNullOrEmpty(token))
+            {
+                _tokenDTService.SetToken(token); 
+            }
             _tokenDTService.SetURL(Configuration.GetSection("API").GetSection("URL").Value);
             base.OnActionExecuting(context);
         }

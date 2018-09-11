@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using BPNewMVCTest1.Models;
+using BPNewMVCTest1.ViewModels;
 using BPNewMVCTest1Service.HttpService;
 using BPNewMVCTest1Service.TokenDTService;
 using Microsoft.AspNetCore.Http;
@@ -52,21 +53,40 @@ namespace BPNewMVCTest1.Controllers
         }
 
         // GET: Meeting/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+
+            HttpClient client = _httpService.GetHttpClientInstance();
+            HttpResponseMessage response = await client.GetAsync(_httpService.GetBaseURL() + "meeting/CreateMeetingGet");
+
+            var meetingViewModel = new MeetingViewModel();
+            if (response.IsSuccessStatusCode)
+            {
+                meetingViewModel = await response.Content.ReadAsAsync<MeetingViewModel>();
+            }
+
+            
+            return View("CreateMeeting", meetingViewModel);
         }
 
         // POST: Meeting/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(MeetingViewModel meetingViewModel)
         {
             try
             {
                 // TODO: Add insert logic here
 
-                return RedirectToAction(nameof(Index));
+                HttpClient client = _httpService.GetHttpClientInstance();
+                HttpResponseMessage response = await client.PostAsJsonAsync(_httpService.GetBaseURL() + "meeting", meetingViewModel);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //TODO : Log status code
+                }
+
+                return RedirectToAction(nameof(ViewMeetings));
             }
             catch
             {

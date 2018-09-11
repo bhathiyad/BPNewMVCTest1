@@ -1,0 +1,192 @@
+﻿@model BPNewMVCTest1.ViewModels.MeetingViewModel
+@{
+    ViewData["Title"] = "CreateMeeting";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateMeeting</h2>
+@*<div class="row">
+    <div class="col-lg-12">
+        <section>*@
+<form asp-controller="Meeting" asp-action="Create" method="post" id="createMeetingForm">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group col-md-12">
+        <div class="col-md-2">
+            <label asp-for="CategoryList" class="control-label"></label>
+        </div>
+        <div class="col-md-10">
+            <select asp-for="CategoryId" asp-items="@(new SelectList(Model.CategoryList,"CategoryId","Name"))"></select>
+            <span asp-validation-for="CategoryList" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-2">
+            <label asp-for="SubCategoryList" class="control-label"></label>
+        </div>
+        <div class="col-md-10">
+            <select asp-for="SubCategoryId" asp-items="@(new SelectList(Model.SubCategoryList,"SubCategoryId","Name"))"></select>
+            <span asp-validation-for="SubCategoryList" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="MeetingDate" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MeetingDate" class="form-control" />
+            <span asp-validation-for="MeetingDate" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="MeetingStartTime" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MeetingStartTime" class="form-control" />
+            <span asp-validation-for="MeetingStartTime" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="MeetingEndTime" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MeetingEndTime" class="form-control" />
+            <span asp-validation-for="MeetingEndTime" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <div class="col-md-2">
+            <label asp-for="OrganizerList" class="control-label"></label>
+        </div>
+        <div class="col-md-10">
+            <select asp-for="CustomUserId" asp-items="@(new SelectList(Model.OrganizerList,"CustomUserId","UserName"))"></select>
+            <span asp-validation-for="OrganizerList" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="Subject" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <textarea asp-for="Subject" class="form-control" > </textarea>
+            <span asp-validation-for="Subject" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="Title" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="Description" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <textarea asp-for="Description" class="form-control"> </textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="MeetingVenueList" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="MeetingTemplateId" asp-items="@(new SelectList(Model.MeetingVenueList,"MeetingTemplateId","TemplateName"))"></select>
+            <span asp-validation-for="MeetingVenueList" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="MeetingAt" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MeetingAt" class="form-control" />
+            <span asp-validation-for="MeetingAt" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="MeetingRoomName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MeetingRoomName" class="form-control" />
+            <span asp-validation-for="MeetingRoomName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group col-md-12">
+        <label asp-for="GeoLocation" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="GeoLocation" class="form-control" />
+            <span asp-validation-for="GeoLocation" class="text-danger"></span>
+        </div>
+    </div>
+    <div form-group col-md-12>
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <button type="submit" class="btn-primary">Create Meeting</button>
+        </div>
+    </div>
+
+</form>
+        @*</section>
+    </div>
+    </div>*@
+
+        @*<div class="row">
+                <div class="col-md-4">
+                    <section>
+                        <form method="post">
+                            <h4>Use a local account to log in.</h4>
+                            <hr />
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="Input.Email"></label>
+                                <input asp-for="Input.Email" class="form-control" />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Input.Password"></label>
+                                <input asp-for="Input.Password" class="form-control" />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe">
+                                        <input asp-for="Input.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default">Log in</button>
+                            </div>
+                            <div class="form-group">
+                                <p>
+                                    <a asp-page="./ForgotPassword">Forgot your password?</a>
+                                </p>
+                                <p>
+                                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                </p>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+                <div class="col-md-6 col-md-offset-2">
+                    <section>
+                        <h4>Use another service to log in.</h4>
+                        <hr />
+                        @{
+                            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                            {
+                                <div>
+                                    <p>
+                                        There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                                        for details on setting up this ASP.NET application to support logging in via external services.
+                                    </p>
+                                </div>
+                            }
+                            else
+                            {
+                                <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                    <div>
+                                        <p>
+                                            @foreach (var provider in Model.ExternalLogins)
+                                            {
+                                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                            }
+                                        </p>
+                                    </div>
+                                </form>
+                            }
+                        }
+                    </section>
+                </div>
+            </div>*@
+

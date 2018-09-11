@@ -22,7 +22,7 @@ namespace BPNewMVCTest1Service.HttpService
 
             if (!string.IsNullOrEmpty(token))
             {
-                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");
+                httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {token}");//$"Bearer {token}"
             }
 
             return httpClient;
