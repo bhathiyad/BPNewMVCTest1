@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - BPNewMVCTest1</title>
+    <title>@ViewData["Title"] - BPNewMVCApp</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -34,7 +34,9 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    @if (User.Identity.IsAuthenticated) {
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-area="" asp-controller="Meeting" asp-action="Create">Create Meeting</a></li>
                         <li><a asp-area="" asp-controller="Meeting" asp-action="ViewMeetings">View Meetings</a></li>
                     }
                 </ul>
@@ -49,7 +51,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - BPNewMVCTest1</p>
+            <p>&copy; 2018 - BPNewMVCApp</p>
         </footer>
     </div>
 
